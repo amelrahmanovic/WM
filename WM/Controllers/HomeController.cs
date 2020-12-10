@@ -49,5 +49,11 @@ namespace WM.Controllers
             proizvodDAO.Add(new Proizvod() { Id=Id, Naziv = NazivProizvoda, Opis = OpisProizvoda, Cena = CenaProizvoda, KategorijaId = Kategorija, DobavljacId = Dobavljac, ProizvodacId = Proizvodac });
             return RedirectToAction("", "Home");
         }
+        public ActionResult DeleteProizvod(int Id)
+        {
+            ProizvodDAO proizvodDAO = new ProizvodDAO();
+            proizvodDAO.Delete(Id);
+            return RedirectToAction("", "Home");
+        }
     }
 }
