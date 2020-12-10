@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WM.Data_Access_Layer;
 
 namespace WM.Controllers
 {
@@ -10,7 +11,9 @@ namespace WM.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ProizvodDAO proizvodDAO = new ProizvodDAO();
+            return View(proizvodDAO.getAll());
+
         }
     }
 }

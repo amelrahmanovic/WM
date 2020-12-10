@@ -13,6 +13,7 @@ namespace WM
 
         public DbSet<Kategorija> Kategorija { get; set; }
         public DbSet<Dobavljac> Dobavljac { get; set; }
+        public DbSet<Proizvodac> Proizvodac { get; set; }
         public DbSet<Proizvod> Proizvod { get; set; }
     }
 }

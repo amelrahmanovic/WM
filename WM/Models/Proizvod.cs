@@ -12,7 +12,8 @@ namespace WM.Models
         public string Opis { get; set; }
         public int KategorijaId { get; set; }
         public Kategorija Kategorija { get; set; }
-        public string Proizvodjac { get; set; }
+        public int ProizvodacId { get; set; }
+        public Proizvodac Proizvodac { get; set; }
         public int DobavljacId { get; set; }
         public Dobavljac Dobavljac { get; set; }
         public string Cena { get; set; }

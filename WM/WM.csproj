@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data Access Layer\ProizvodDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -135,10 +136,23 @@
     <Compile Include="Migrations\202012101251582_Init.designer.cs">
       <DependentUpon>202012101251582_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012101309167_KategorijaUpdateNazivToString.cs" />
+    <Compile Include="Migrations\202012101309167_KategorijaUpdateNazivToString.designer.cs">
+      <DependentUpon>202012101309167_KategorijaUpdateNazivToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012101323588_AddProizvodac.cs" />
+    <Compile Include="Migrations\202012101323588_AddProizvodac.designer.cs">
+      <DependentUpon>202012101323588_AddProizvodac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012101325346_ProizvodAddProizvodacFK.cs" />
+    <Compile Include="Migrations\202012101325346_ProizvodAddProizvodacFK.designer.cs">
+      <DependentUpon>202012101325346_ProizvodAddProizvodacFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dobavljac.cs" />
     <Compile Include="Models\Kategorija.cs" />
     <Compile Include="Models\Proizvod.cs" />
+    <Compile Include="Models\Proizvodac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sql.cs" />
   </ItemGroup>
@@ -196,6 +210,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012101251582_Init.resx">
       <DependentUpon>202012101251582_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012101309167_KategorijaUpdateNazivToString.resx">
+      <DependentUpon>202012101309167_KategorijaUpdateNazivToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012101323588_AddProizvodac.resx">
+      <DependentUpon>202012101323588_AddProizvodac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012101325346_ProizvodAddProizvodacFK.resx">
+      <DependentUpon>202012101325346_ProizvodAddProizvodacFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

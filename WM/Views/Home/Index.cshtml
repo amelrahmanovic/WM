@@ -1,3 +1,35 @@
-﻿@{
+﻿@model IEnumerable<WM.Models.Proizvod>
+@{
     ViewBag.Title = "Home Page";
 }
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Proizvod:</th>
+            <th>Opis:</th>
+            <th>Cena:</th>
+            <th>Kategorija:</th>
+            <th>Dobavljac:</th>
+            <th>Proizvodi:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Naziv</td>
+            <td>@item.Opis</td>
+            <td>@item.Cena</td>
+            <td>@item.Kategorija.Naziv</td>
+            <td>@item.Dobavljac.Naziv</td>
+            <td>@item.Proizvodac.Naziv</td>
+        </tr>
+        }
+        
+    </tbody>
+</table>
+
+
+
