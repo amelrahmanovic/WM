@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,34 +12,68 @@ namespace WM.Data_Access_Layer
         sql s = new sql();
         public List<Proizvod> getAll()
         {
-            return s.Proizvod.Include("Kategorija").Include("Dobavljac").Include("Proizvodac").ToList();
+            try
+            {
+                return s.Proizvod.Include("Kategorija").Include("Dobavljac").Include("Proizvodac").ToList();
+            }
+            catch (Exception ex)
+            {
+                ILog log = LogManager.GetLogger("mylog");
+                log.Error(ex.Message);
+            }
+            return new List<Proizvod>();  
         }
         public void Add(Proizvod proizvod)
         {
-            Proizvod p;
-            if (proizvod.Id==0)
-                s.Proizvod.Add(proizvod);
-            else
+            try
             {
-                p = Find(proizvod.Id);
-                p.Cena = proizvod.Cena;
-                p.DobavljacId = proizvod.DobavljacId;
-                p.KategorijaId = proizvod.KategorijaId;
-                p.Naziv = proizvod.Naziv;
-                p.Opis = proizvod.Opis;
-                p.ProizvodacId = proizvod.ProizvodacId;
+                Proizvod p;
+                if (proizvod.Id == 0)
+                    s.Proizvod.Add(proizvod);
+                else
+                {
+                    p = Find(proizvod.Id);
+                    p.Cena = proizvod.Cena;
+                    p.DobavljacId = proizvod.DobavljacId;
+                    p.KategorijaId = proizvod.KategorijaId;
+                    p.Naziv = proizvod.Naziv;
+                    p.Opis = proizvod.Opis;
+                    p.ProizvodacId = proizvod.ProizvodacId;
+                }
+
+                s.SaveChanges();
             }
-            
-            s.SaveChanges();
+            catch (Exception ex)
+            {
+                ILog log = LogManager.GetLogger("mylog");
+                log.Error(ex.Message);
+            }
         }
         public Proizvod Find(int Id)
         {
-            return s.Proizvod.SingleOrDefault(x => x.Id == Id);
+            try
+            {
+                return s.Proizvod.SingleOrDefault(x => x.Id == Id);
+            }
+            catch (Exception ex)
+            {
+                ILog log = LogManager.GetLogger("mylog");
+                log.Error(ex.Message);
+            }
+            return new Proizvod();
         }
         public void Delete(int Id)
         {
-            s.Proizvod.Remove(Find(Id));
-            s.SaveChanges();
+            try
+            {
+                s.Proizvod.Remove(Find(Id));
+                s.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ILog log = LogManager.GetLogger("mylog");
+                log.Error(ex.Message);
+            }
         }
     }
 }

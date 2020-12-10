@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,16 @@ namespace WM.Data_Access_Layer
         sql s = new sql();
         public List<Proizvodac> getAll()
         {
-            return s.Proizvodac.ToList();
+            try
+            {
+                return s.Proizvodac.ToList();
+            }
+            catch (Exception ex)
+            {
+                ILog log = LogManager.GetLogger("mylog");
+                log.Error(ex.Message);
+            }
+            return new List<Proizvodac>();
         }
     }
 }

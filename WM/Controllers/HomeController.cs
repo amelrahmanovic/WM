@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace WM.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ActionResult Index()
         {
             ProizvodDAO proizvodDAO = new ProizvodDAO();
@@ -19,10 +21,18 @@ namespace WM.Controllers
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(proizvodDAO.getAll());
 
             // Write the string array to a new file named "WriteLines.json".
-            //using (StreamWriter outputFile = new StreamWriter(Path.Combine(@"C:\Users\Amel\Desktop\", "Proizvodi.json")))
-            //{
-            //    outputFile.WriteLine(json);
-            //}
+            try
+            {
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(@"C:\Users\Amel\Desktop\", "Proizvodi.json")))
+                {
+                    outputFile.WriteLine(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                ILog log = LogManager.GetLogger("mylog");
+                log.Error(ex.Message);
+            }
             return View(proizvodDAO.getAll());
         }
         public ActionResult NoviEditProizvod(int? Id)
