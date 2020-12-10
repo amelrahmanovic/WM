@@ -25,7 +25,7 @@ namespace WM.Controllers
             //}
             return View(proizvodDAO.getAll());
         }
-        public ActionResult NoviProizvod()
+        public ActionResult NoviEditProizvod(int? Id)
         {
             KategorijaDAO kategorijaDAO = new KategorijaDAO();
             ViewData["Kategorije"] = kategorijaDAO.getAll();
@@ -33,13 +33,20 @@ namespace WM.Controllers
             ViewData["Dobavljaci"] = dobavljacDAO.getAll();
             ProizvodacDAO proizvodacDAO = new ProizvodacDAO();
             ViewData["Proizvodaci"] = proizvodacDAO.getAll();
+            if (Id != null)
+            {
+                ProizvodDAO proizvodDAO = new ProizvodDAO();
+                ViewData["Proizvod"] = proizvodDAO.Find(Int32.Parse(Id.ToString()));
+            }
+            else
+                ViewData["Proizvod"] = new Proizvod();
 
             return View();
         }
-        public ActionResult SnimiProizvod(string NazivProizvoda, string OpisProizvoda, string CenaProizvoda, int Kategorija, int Dobavljac, int Proizvodac)
+        public ActionResult SnimiProizvod(int Id, string NazivProizvoda, string OpisProizvoda, string CenaProizvoda, int Kategorija, int Dobavljac, int Proizvodac)
         {
             ProizvodDAO proizvodDAO = new ProizvodDAO();
-            proizvodDAO.Add(new Proizvod() { Naziv = NazivProizvoda, Opis = OpisProizvoda, Cena = CenaProizvoda, KategorijaId = Kategorija, DobavljacId = Dobavljac, ProizvodacId = Proizvodac });
+            proizvodDAO.Add(new Proizvod() { Id=Id, Naziv = NazivProizvoda, Opis = OpisProizvoda, Cena = CenaProizvoda, KategorijaId = Kategorija, DobavljacId = Dobavljac, ProizvodacId = Proizvodac });
             return RedirectToAction("", "Home");
         }
     }

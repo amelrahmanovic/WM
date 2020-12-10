@@ -3,7 +3,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<a class="btn btn-primary" href="~/Home/NoviProizvod">Novi proizvod</a>
+<a class="btn btn-primary" href="~/Home/NoviEditProizvod">Novi proizvod</a>
 
 <table class="table table-hover">
     <thead>
@@ -14,6 +14,7 @@
             <th>Kategorija:</th>
             <th>Dobavljac:</th>
             <th>Proizvodi:</th>
+            <th>Akcije:</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,10 @@
             <td>@item.Kategorija.Naziv</td>
             <td>@item.Dobavljac.Naziv</td>
             <td>@item.Proizvodac.Naziv</td>
+            <td>
+                <a class="btn btn-default" href="~/Home/NoviEditProizvod?Id=@item.Id">Edit</a>
+                <a class="btn btn-danger" href="~/Home/DeleteProizvod?Id=@item.Id">Delete</a>
+            </td>
         </tr>
         }
         
