@@ -13,5 +13,10 @@ namespace WM.Data_Access_Layer
         {
             return s.Proizvod.Include("Kategorija").Include("Dobavljac").Include("Proizvodac").ToList();
         }
+        public void Add(Proizvod proizvod)
+        {
+            s.Proizvod.Add(proizvod);
+            s.SaveChanges();
+        }
     }
 }

@@ -1,0 +1,40 @@
+﻿@using WM.Models;
+@{
+    ViewBag.Title = "NoviProizvod";
+    List<Kategorija> Kategorije = (List<Kategorija>)ViewData["Kategorije"];
+    List<Dobavljac> Dobavljaci = (List<Dobavljac>)ViewData["Dobavljaci"];
+    List<Proizvodac> Proizvodaci = (List<Proizvodac>)ViewData["Proizvodaci"];
+}
+
+<h2>Novi proizvod</h2>
+
+<form action="~/Home/SnimiProizvod">
+    <input name="NazivProizvoda" class="form-control" type="text" placeholder="Naziv proizvoda" required />
+
+    <textarea name="OpisProizvoda" class="form-control" placeholder="Opis" required></textarea>
+
+    <input name="CenaProizvoda" class="form-control" type="number" placeholder="Cena" min="1" />
+
+    <select name="Kategorija" class="form-control" required>
+        @foreach (var item in Kategorije)
+        {
+            <option value="@item.Id">@item.Naziv</option>
+        }
+    </select>
+
+    <select name="Dobavljac" class="form-control" required>
+        @foreach (var item in Dobavljaci)
+        {
+            <option value="@item.Id">@item.Naziv</option>
+        }
+    </select>
+
+    <select name="Proizvodac" class="form-control" required>
+        @foreach (var item in Proizvodaci)
+        {
+            <option value="@item.Id">@item.Naziv</option>
+        }
+    </select>
+
+    <input class="btn btn-success" type="submit" value="Snimi" />
+</form>
